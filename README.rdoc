@@ -1,0 +1,45 @@
+= cartage-s3 by Kinetic Cafe
+
+code :: https://github.com/KineticCafe/cartage-s3/
+issues :: https://github.com/KineticCafe/cartage-s3/issues
+continuous integration :: {<img src="https://travis-ci.org/KineticCafe/cartage-s3.png" />}[https://travis-ci.org/KineticCafe/cartage-s3]
+
+== Description
+
+cartage-s3 is a plug-in for {cartage}[https://github.com/KineticCafe/cartage]
+to upload the built package to Amazon's S3 or a service with a similar
+interface. Cartage provides a repeatable means to create a package for a Rails
+application that can be used in deployment with a configuration tool like
+Ansible, Chef, Puppet, or Salt. The package is created with its dependencies
+bundled in `vendor/bundle`, so it can be deployed in environments with strict
+access control rules and without requiring development tool access.
+
+== Synopsis
+
+    # Build a package from the current machine, using the Manifest.txt, and
+    # uploads it to AWS S3.
+    cartage s3
+
+== Install
+
+Add cartage-s3 to your Gemfile:
+
+    gem 'cartage-s3', '~> 1.0'
+
+Or manually install:
+
+  % gem install cartage-s3
+
+== cartage-s3 Semantic Versioning
+
+cartage-s3 uses a {Semantic Versioning}[http://semver.org/] scheme with one
+change:
+
+* When PATCH is zero (+0+), it will be omitted from version references.
+
+cartage-s3 will generally track cartage for major versions to ensure plugin API
+compatibility.
+
+:include: Contributing.rdoc
+
+:include: Licence.rdoc
