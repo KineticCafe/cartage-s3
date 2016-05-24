@@ -2,33 +2,63 @@
 
 code :: https://github.com/KineticCafe/cartage-s3/
 issues :: https://github.com/KineticCafe/cartage-s3/issues
-continuous integration :: {<img src="https://travis-ci.org/KineticCafe/cartage-s3.png" />}[https://travis-ci.org/KineticCafe/cartage-s3]
+continuous integration :: {<img src="https://travis-ci.org/KineticCafe/cartage-s3.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/KineticCafe/cartage-s3]
 
 == Description
 
 cartage-s3 is a plug-in for {cartage}[https://github.com/KineticCafe/cartage]
 to upload the built package to Amazon's S3 or a service with a similar
-interface. Cartage provides a repeatable means to create a package for a Rails
-application that can be used in deployment with a configuration tool like
-Ansible, Chef, Puppet, or Salt. The package is created with its dependencies
-bundled in `vendor/bundle`, so it can be deployed in environments with strict
-access control rules and without requiring development tool access.
+interface.
 
-== Synopsis
+Cartage provides a repeatable means to create a package for a Rails application
+that can be used in deployment with a configuration tool like Ansible, Chef,
+Puppet, or Salt.
 
-    # Build a package from the current machine, using the Manifest.txt, and
-    # uploads it to AWS S3.
-    cartage s3
+== Synopsis & Configuration
+
+cartage-s3 provides a new command to Cartage.
+
+    # Uploads a previously built package to S3 at the `default` location.
+    cartage --timestamp=20160322144532 s3 put
+
+    # Lists packages in S3.
+    cartage s3 ls
+
+    # Removes a previously built package from S3.
+    cartage --timestamp=20160321123418 s3 rm
+
+    # Gets a previously built package from S3.
+    cartage --timestamp=20160322144532 s3 get
+
+Access keys can be configured in the <tt>plugins.s3</tt> section of the Cartage
+configuration file.
+
+    ---
+    plugins:
+      s3:
+        destination: default # The name of the target destination to use.
+        destinations:
+          default:
+            path: bucket # The name of the bucket to use.
+            credentials:
+              provider: AWS
+                aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+                aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+                region: us-west-2
+                path_style: true
 
 == Install
 
 Add cartage-s3 to your Gemfile:
 
-    gem 'cartage-s3', '~> 1.0'
+    gem 'cartage-s3', '~> 2.0', groups: [ :development, :test ]
 
 Or manually install:
 
   % gem install cartage-s3
+
+This plug-in should not be part of your production environment; its purposes is
+to manage remotely stored production-ready packages.
 
 == cartage-s3 Semantic Versioning
 
@@ -40,6 +70,10 @@ change:
 cartage-s3 will generally track cartage for major versions to ensure plugin API
 compatibility.
 
-:include: Contributing.rdoc
+== Community and Contributing
 
-:include: Licence.rdoc
+cartage-s3 welcomes your contributions as described in
+{Contributing.md}[https://github.com/KineticCafe/cartage-s3/blob/master/Contributing.md].
+This project, like all Kinetic Cafe {open source
+projects}[https://github.com/KineticCafe], is under the Kinetic Cafe Open
+Source {Code of Conduct}[https://github.com/KineticCafe/code-of-conduct].
