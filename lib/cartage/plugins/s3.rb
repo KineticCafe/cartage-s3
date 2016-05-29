@@ -102,7 +102,7 @@ class Cartage
   #
   # These permissions are only needed for the optionas listed.
   class S3 < Cartage::Plugin
-    VERSION = '2.0.rc1' #:nodoc:
+    VERSION = '2.0.rc2' #:nodoc:
 
     # Put packages and metadata to the remote location.
     def put
@@ -178,6 +178,8 @@ class Cartage
           path: s3_config.path,
           credentials: s3_config.credentials
         )
+        s3_config.delete_field(:path)
+        s3_config.delete_field(:credentials)
       end
 
       @name = s3_config.destination || 'default'
