@@ -134,7 +134,7 @@ Destination foo invalid: No provider present
       end
     end
 
-    it '#put uploads the release metadata and packages' do
+    it 'uploads the release metadata and packages' do
       expected_files.map! do |v|
         Pathname("/a/b/c/tmp/#{v}")
       end
@@ -152,7 +152,7 @@ Destination foo invalid: No provider present
       end
     end
 
-    it '#get downloads the release metadata and packages' do
+    it 'downloads the release metadata and packages' do
       expected_files.map! do |v|
         Pathname("/a/b/c/tmp/#{v}")
       end
@@ -203,7 +203,7 @@ Destination foo invalid: No provider present
       end
     }
 
-    it '#list shows only files related to the package' do
+    it 'shows only files related to the package' do
       instance_stub subject.class, :connection, -> { connection } do
         assert_output "#{files_test.join("\n")}\n" do
           subject.list
@@ -211,7 +211,7 @@ Destination foo invalid: No provider present
       end
     end
 
-    it '#list(true) shows all files' do
+    it '(true) shows all files' do
       instance_stub subject.class, :connection, -> { connection } do
         assert_output "#{files_all.join("\n")}\n" do
           subject.list(true)
@@ -227,7 +227,8 @@ Destination foo invalid: No provider present
       end
     end
 
-    it '#delete removes the release metadata and packages' do
+    it 'removes the release metadata and packages' do
+      expected_files.unshift('test-value-release-hashref.txt')
       expected_files.map! do |v|
         Pathname("/a/b/c/tmp/#{v}")
       end

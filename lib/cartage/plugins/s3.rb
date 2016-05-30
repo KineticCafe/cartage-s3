@@ -102,7 +102,7 @@ class Cartage
   #
   # These permissions are only needed for the optionas listed.
   class S3 < Cartage::Plugin
-    VERSION = '2.0.rc2' #:nodoc:
+    VERSION = '2.0.rc3' #:nodoc:
 
     # Put packages and metadata to the remote location.
     def put
@@ -142,6 +142,7 @@ class Cartage
     def delete
       check_config(require_destination: true)
       cartage.display "Removing packages from #{name}..."
+      delete_file Pathname("#{cartage.final_name}-release-hashref.txt")
       delete_file cartage.final_release_metadata_json
       cartage.plugins.request_map(:build_package, :package_name).each do |name|
         delete_file name
