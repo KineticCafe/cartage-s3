@@ -102,7 +102,7 @@ class Cartage
   #
   # These permissions are only needed for the optionas listed.
   class S3 < Cartage::Plugin
-    VERSION = '2.0' #:nodoc:
+    VERSION = '2.1' #:nodoc:
 
     # Put packages and metadata to the remote location.
     def put

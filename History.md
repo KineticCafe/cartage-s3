@@ -1,3 +1,7 @@
+### 2.1 / 2018-04-12
+
+*   Changed dependency on fog to fog-aws.
+
 ### 2.0 / 2016-05-31
 
 *   Rewrote for compatibility with cartage 2.0.

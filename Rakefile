@@ -23,7 +23,7 @@ spec = Hoe.spec 'cartage-s3' do
   ruby20!
 
   extra_deps << ['cartage', '~> 2.0']
-  extra_deps << ['fog', '~> 1.27']
+  extra_deps << ['fog-aws', '>= 1.0', '< 3.0']
 
   extra_dev_deps << ['rake', '>= 10.0']
   extra_dev_deps << ['rdoc', '~> 4.2']
