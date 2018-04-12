@@ -102,7 +102,7 @@ class Cartage
   #
   # These permissions are only needed for the optionas listed.
   class S3 < Cartage::Plugin
-    VERSION = '2.1' #:nodoc:
+    VERSION = '2.1.1' #:nodoc:
 
     # Put packages and metadata to the remote location.
     def put
@@ -215,7 +215,7 @@ class Cartage
     #:nocov:
     def connection
       unless defined?(@connection)
-        require 'fog'
+        require 'fog-aws'
         @connection = Fog::Storage.new(destination.credentials.to_h)
       end
       @connection

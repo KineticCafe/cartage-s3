@@ -34,6 +34,7 @@ describe 'Cartage::S3' do
   let(:config) { Cartage::Config.new(config_hash) }
   let(:cartage) { Cartage.new(config) }
   let(:subject) { cartage.s3 }
+  let(:hashify) { config.method(:hashify) }
 
   def self.it_verifies_configuration(focus: false, &block)
     self.focus if focus
@@ -95,12 +96,13 @@ Destination foo invalid: No provider present
     end
 
     it 'converts the implicit default into explicit' do
-      s3_config.delete(:destinations)
+      expected = hashify.(s3_config.delete(:destinations))
       s3_config[:path] = path
       s3_config[:credentials] = credentials
 
-      assert_equal s3_config[:destinations], cartage.config(for_plugin: :s3).
-        dig(:destinations).to_hash
+      actual = hashify.(cartage.config(for_plugin: :s3). dig(:destinations))
+
+      assert_equal expected, actual
     end
 
     it 'fails on the destination missing a path' do

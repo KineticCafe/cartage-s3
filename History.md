@@ -1,3 +1,8 @@
+### 2.1.1 / 2018-04-12
+
+*   Remember to require 'fog-aws', not 'fog'.
+*   Fix issues with tests.
+
 ### 2.1 / 2018-04-12
 
 *   Changed dependency on fog to fog-aws.
