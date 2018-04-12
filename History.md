@@ -1,3 +1,8 @@
+### 2.1.2 / 2018-04-12
+
+*   Fog storage requires mime-types; when not using the fog gem, include
+    mime-types explicitly.
+
 ### 2.1.1 / 2018-04-12
 
 *   Remember to require 'fog-aws', not 'fog'.

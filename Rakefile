@@ -24,6 +24,7 @@ spec = Hoe.spec 'cartage-s3' do
 
   extra_deps << ['cartage', '~> 2.0']
   extra_deps << ['fog-aws', '>= 1.0', '< 3.0']
+  extra_deps << ['mime-types', '>= 2.0', '< 4.0']
 
   extra_dev_deps << ['rake', '>= 10.0']
   extra_dev_deps << ['rdoc', '~> 4.2']
